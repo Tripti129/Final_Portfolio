@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.DS_Store
+
+# Original uploads (copies live in public/)
+/profile_imge.png
+/Tripti_finalresume_linkedin_github_updated.pdf

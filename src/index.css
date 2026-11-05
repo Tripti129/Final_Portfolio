@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-night text-slate-300 font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-accent/40 text-white;
+  }
+  h1, h2, h3 {
+    @apply font-display text-white;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-surface/70 backdrop-blur-sm transition-colors duration-300 hover:border-accent/40;
+  }
+  .chip {
+    @apply rounded-full border border-line bg-white/[0.03] px-3 py-1 text-xs font-medium text-slate-300;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent via-fuchsia-400 to-accent2 bg-clip-text text-transparent;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-fuchsia-500 px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform duration-200 hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:border-accent/60 hover:bg-white/[0.04];
+  }
+}
+
+/* subtle grid backdrop */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ── Mouse interactions ─────────────────────────────── */
+
+/* Spotlight that follows the cursor inside cards (--mx/--my set by MouseEffects) */
+.card {
+  position: relative;
+  isolation: isolate;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(139, 92, 246, 0.16),
+    rgba(34, 211, 238, 0.06) 40%,
+    transparent 70%
+  );
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Hide the system cursor only when the custom cursor is active (mouse devices) */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+  cursor: text !important;
+}
