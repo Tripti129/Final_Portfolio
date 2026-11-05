@@ -87,7 +87,10 @@ export default function Hero() {
             <div className="absolute inset-0 rounded-full bg-night" />
             <img
               src={profile.photo}
-              alt={profile.name}
+              alt={`${profile.name}, Full Stack Developer`}
+              width={320}
+              height={320}
+              fetchpriority="high"
               className="absolute inset-2 h-[calc(100%-1rem)] w-[calc(100%-1rem)] rounded-full object-cover object-top"
               style={{ transform: 'translateZ(40px)' }}
             />

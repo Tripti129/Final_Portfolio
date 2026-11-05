@@ -17,7 +17,7 @@ export const profile = {
   location: 'Panipat, India',
   email: 'triptimittal996@gmail.com',
   phone: '+91 7056935169',
-  photo: '/profile.png',
+  photo: '/profile.webp',
   resume: '/Tripti_Mittal_Resume.pdf',
   socials: {
     github: 'https://github.com/Tripti129',
